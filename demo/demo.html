@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script type="text/javascript" src="../jquery.password-validation.js"></script>
+<script>
+	$(document).ready(function() {
+		$("#myPassword").passwordValidation({"confirmField": "#myConfirmPassword"}, function(element, valid, match, failedCases) {
+
+		    $("#errors").html("<pre>" + failedCases.join("\n") + "</pre>");
+		  
+		     if(valid) $(element).css("border","2px solid green");
+		     if(!valid) $(element).css("border","2px solid red");
+		     if(valid && match) $("#myConfirmPassword").css("border","2px solid green");
+		     if(!valid || !match) $("#myConfirmPassword").css("border","2px solid red");
+		});
+	});
+</script>
+<div>
+	<input id="myPassword" type="password">Password
+	<input id="myConfirmPassword" type="password">Verify Password
+</div>
+<label id="errors"/>
+</body>
+</html>
